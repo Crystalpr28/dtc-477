@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>You Can't Win</title>
+
+  <style>
+    body {
+      background: rgb(0, 0, 0);
+      color: rgb(255, 255, 255);
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden;
+      padding-top: 120px;
+      transition: background 0.5s;
+    }
+
+    #gameBtn {
+      position: absolute;
+      padding: 12px 25px;
+      font-size: 16px;
+      cursor: pointer;
+
+      /* Start centered */
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    #score {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<h1>You Can't Win</h1>
+<div id="score">Score: 0</div>
+<button id="gameBtn">click to win !</button>
+
+<script>
+
+/*
+1. Store DOM elements.
+2. Create array of rule messages.
+3. Track score, difficulty, running state, and run count.
+4. Move button randomly.
+5. Detect mouse distance to trigger movement.
+6. Activate running after 2 clicks.
+7. Show psychological ending message.
+*/
+
+const gameBtn = document.getElementById("gameBtn");
+const scoreDisplay = document.getElementById("score");
+
+const ruleMessages = [
+  "Almost.",
+  "So close.",
+  "Try harder.",
+  "That didn't count.",
+  "Score recalculated."
+];
+
+let score = 0;
+let difficulty = 0;
+let isRunning = false;
+let runCount = 0;
+
+// Move button randomly
+function moveButton() {
+
+  let x = Math.random() * (window.innerWidth - 150);
+  let y = Math.random() * (window.innerHeight - 100);
+
+  gameBtn.style.left = x + "px";
+  gameBtn.style.top = y + "px";
+  gameBtn.style.transform = "none";
+
+  runCount++;
+
+  if (runCount >= 15) {
+    showEnding();
+  }
+}
+
+// Detect mouse movement and avoid cursor
+document.addEventListener("mousemove", function(e) {
+
+  if (!isRunning) return;
+
+  let buttonRect = gameBtn.getBoundingClientRect();
+
+  let buttonCenterX = buttonRect.left + buttonRect.width / 2;
+  let buttonCenterY = buttonRect.top + buttonRect.height / 2;
+
+  let distance = Math.hypot(
+    e.clientX - buttonCenterX,
+    e.clientY - buttonCenterY
+  );
+
+  if (distance < 120) {
+    moveButton();
+  }
+
+});
+
+// Random score change
+function updateScore() {
+
+  let randomChange = Math.floor(Math.random() * 5) - 2;
+  score += randomChange;
+
+  scoreDisplay.textContent = "Score: " + score;
+}
+
+// Escalation logic
+function escalateGame() {
+
+  difficulty++;
+
+  if (difficulty >= 2) {
+    isRunning = true;
+  }
+
+  if (difficulty >= 5) {
+    gameBtn.textContent =
+      ruleMessages[Math.floor(Math.random() * ruleMessages.length)];
+  }
+}
+
+// Ending
+function showEnding() {
+
+  gameBtn.style.display = "none";
+
+  let endingBtn = document.createElement("button");
+  endingBtn.textContent = "ha! you thought, loser.";
+  endingBtn.style.position = "fixed";
+  endingBtn.style.bottom = "40px";
+  endingBtn.style.left = "50%";
+  endingBtn.style.transform = "translateX(-50%)";
+  endingBtn.style.padding = "12px 25px";
+  endingBtn.style.fontSize = "16px";
+
+  endingBtn.addEventListener("click", function() {
+    location.reload();
+  });
+
+  document.body.appendChild(endingBtn);
+}
+
+gameBtn.addEventListener("click", function() {
+  updateScore();
+  escalateGame();
+});
+
+</script>
+</body>
+</html>
