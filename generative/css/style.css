@@ -1,0 +1,325 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background:
+        radial-gradient(circle at top, #1d2242 0%, #0a0d1f 45%, #04050d 100%);
+    color: #f5f7ff;
+    font-family: Georgia, "Times New Roman", serif;
+    min-height: 100vh;
+}
+
+.page {
+    width: min(1180px, 92%);
+    margin: 0 auto;
+    padding: 48px 0 30px;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: #ffffff;
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 5px #ffffff,
+        0 0 5px #8fa7ff,
+        0 0 5px #8fa7ff,
+        0 0 20px #6a85ff;
+}
+
+h1 {
+    animation: glowPulse 2s infinite;
+}
+
+.hero {
+    margin-bottom: 28px;
+}
+
+.eyebrow {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    color: #b7c2ff;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: clamp(2.8rem, 7vw, 5.2rem);
+    line-height: 0.95;
+    margin-bottom: 16px;
+}
+
+.intro {
+    max-width: 680px;
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: #d5dbff;
+}
+
+.constellation-wrapper {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+}
+
+.stars::before,
+.stars::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow:
+        50px 80px white,
+        120px 200px white,
+        300px 150px white,
+        400px 90px white,
+        600px 200px white,
+        700px 120px white,
+        850px 300px white,
+        100px 350px white,
+        500px 400px white,
+        750px 500px white,
+        900px 100px white,
+        200px 500px white,
+        350px 450px white,
+        650px 350px white,
+        820px 250px white,
+        150px 600px white,
+        300px 650px white,
+        550px 700px white,
+        720px 620px white,
+        880px 680px white,
+        950px 400px white,
+        1100px 200px white,
+        1150px 500px white,
+        1250px 350px white,
+        1400px 600px white;
+}
+
+.stars::after {
+    width: 3px;
+    height: 3px;
+    opacity: 0.8;
+}
+
+.sky-panel,
+.poem-panel {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(205, 216, 255, 0.18);
+    border-radius: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.sky-panel {
+    position: relative;
+    min-height: 620px;
+    overflow: hidden;
+}
+
+.sky {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 620px;
+}
+
+.lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.word-star {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    padding: 10px 14px;
+    border: 1px solid rgba(220, 228, 255, 0.16);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    color: #eef2ff;
+    font-size: 1rem;
+    letter-spacing: 0.4px;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease,
+        opacity 0.25s ease;
+    box-shadow:
+        0 0 10px rgba(197, 210, 255, 0.16),
+        0 0 20px rgba(163, 181, 255, 0.08);
+    animation: drift 6s ease-in-out infinite;
+}
+
+.word-star::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow:
+        0 0 8px rgba(255, 255, 255, 0.9),
+        0 0 18px rgba(198, 212, 255, 0.7);
+}
+
+.word-star:hover {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow:
+        0 0 16px rgba(221, 229, 255, 0.35),
+        0 0 34px rgba(163, 181, 255, 0.24);
+}
+
+.word-star.selected {
+    background: rgba(172, 191, 255, 0.22);
+    border-color: rgba(221, 230, 255, 0.55);
+    color: #ffffff;
+}
+
+.poem-panel {
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.panel-label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.72rem;
+    color: #b7c2ff;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 12px;
+}
+
+.second-label {
+    margin-top: 28px;
+}
+
+.selected-words,
+.poem-output {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(205, 216, 255, 0.15);
+    border-radius: 18px;
+    padding: 18px;
+    line-height: 1.8;
+    color: #f7f8ff;
+}
+
+.selected-words {
+    min-height: 110px;
+}
+
+.poem-output {
+    min-height: 180px;
+    font-size: 1.1rem;
+    white-space: pre-line;
+}
+
+button {
+    margin-top: 28px;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #8fa7ff, #c0b0ff);
+    color: #10131f;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(171, 186, 255, 0.25);
+}
+
+.footer {
+    text-align: center;
+    padding-top: 24px;
+    color: #bcc6f4;
+}
+
+@keyframes twinkle {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.stars::before {
+    animation: twinkle 4s infinite;
+}
+
+.stars::after {
+    animation: twinkle 6s infinite;
+}
+
+@keyframes drift {
+    0% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) translateY(-8px);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) translateY(0px);
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #8fa7ff, 0 0 10px #8fa7ff;
+    }
+
+    50% {
+        text-shadow: 0 0 10px #fff, 0 0 20px #aabaff, 0 0 40px #6a85ff;
+    }
+
+    100% {
+        text-shadow: 0 0 5px #fff, 0 0 10px #8fa7ff, 0 0 20px #8fa7ff;
+    }
+}
+
+@media (max-width: 900px) {
+    .constellation-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .sky-panel,
+    .sky {
+        min-height: 500px;
+    }
+}

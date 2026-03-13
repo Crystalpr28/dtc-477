@@ -1,0 +1,10 @@
+body{
+    background-color: black;
+    color: aliceblue;
+    font-family: monospace;
+    font-size: large;
+}
+
+.pic{
+    height: 400px;
+}
