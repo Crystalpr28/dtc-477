@@ -1,0 +1,143 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: radial-gradient(circle at top, #1b2735, #090a0f);
+  color: #f1f1f1;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* MAIN */
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* HEADER */
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* ✨ GLOW TITLE */
+.glow-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #eaf6ff;
+
+  text-shadow:
+    0 0 5px rgba(79,172,254,0.6),
+    0 0 15px rgba(79,172,254,0.4),
+    0 0 30px rgba(79,172,254,0.2);
+}
+
+.hero p {
+  opacity: 0.7;
+  margin-top: 8px;
+}
+
+/* SEARCH */
+.search-section {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#weather-form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#city-input {
+  padding: 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.05);
+  color: white;
+  width: 250px;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px rgba(79,172,254,0.6);
+}
+
+.message {
+  margin-top: 10px;
+  color: #ff6b6b;
+}
+
+/* PANELS (NOT ORBS ANYMORE) */
+.orb-layout {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.orb {
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 20px;
+  min-width: 120px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: 0.25s;
+}
+
+.big-orb {
+  width: 240px;
+}
+
+.small-orb {
+  width: 140px;
+}
+
+.orb:hover {
+  transform: translateY(-5px);
+}
+
+#temp {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #4facfe;
+}
+
+/* CANVAS */
+.canvas-wrap {
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,0,0,0.6);
+}
+
+canvas {
+  width: 100%;
+  display: block;
+}
+
+.site-footer {
+  text-align: center;
+  margin-top: 50px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.85rem;
+  opacity: 0.6;
+}

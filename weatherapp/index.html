@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+    <main class="app">
+
+        <header class="hero">
+            <h1 class="glow-title">Weather App</h1>
+            <p>Real-time weather, visualized</p>
+        </header>
+
+        <section class="search-section">
+            <form id="weather-form">
+                <input type="text" id="city-input" placeholder="Seattle, US" required />
+                <button type="submit">Search</button>
+            </form>
+            <p id="message" class="message"></p>
+        </section>
+
+        <!-- ORBS -->
+        <section class="orb-layout">
+
+            <div class="orb big-orb">
+                <h2 id="city-name">City</h2>
+                <p id="weather-desc">Condition</p>
+            </div>
+
+            <div class="orb small-orb">
+                <p id="temp">--°</p>
+            </div>
+
+            <div class="orb small-orb">
+                <p id="humidity">Humidity</p>
+            </div>
+
+            <div class="orb small-orb">
+                <p id="wind">Wind</p>
+            </div>
+
+            <div class="orb small-orb">
+                <p id="clouds">Clouds</p>
+            </div>
+
+        </section>
+
+        <!-- CANVAS -->
+        <section class="canvas-wrap">
+            <canvas id="weather-canvas" width="900" height="500"></canvas>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <footer class="site-footer">
+        <p>© 2026 Crystal Perez-Rosas • Weather App Project</p>
+    </footer>
+</body>
+
+
+</html>
